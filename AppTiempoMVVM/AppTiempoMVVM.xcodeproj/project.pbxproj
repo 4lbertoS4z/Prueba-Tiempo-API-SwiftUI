@@ -17,6 +17,8 @@
 		60C80BCD2AF55A2000498809 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C80BCC2AF55A2000498809 /* WeatherViewModel.swift */; };
 		60C80BD02AF564BA00498809 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C80BCF2AF564BA00498809 /* WeatherModel.swift */; };
 		60C80BD22AF565D700498809 /* WeatherModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C80BD12AF565D700498809 /* WeatherModelMapper.swift */; };
+		60E7CC862AF664C50056282B /* WeatherDaysModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E7CC852AF664C50056282B /* WeatherDaysModel.swift */; };
+		60E7CC882AF664E40056282B /* WeatherDaysModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E7CC872AF664E40056282B /* WeatherDaysModelMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		60C80BCE2AF55C8600498809 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		60C80BCF2AF564BA00498809 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 		60C80BD12AF565D700498809 /* WeatherModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModelMapper.swift; sourceTree = "<group>"; };
+		60E7CC852AF664C50056282B /* WeatherDaysModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDaysModel.swift; sourceTree = "<group>"; };
+		60E7CC872AF664E40056282B /* WeatherDaysModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDaysModelMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 				60C80BC92AF556E000498809 /* WeatherResponseDataModel.swift */,
 				60C80BCF2AF564BA00498809 /* WeatherModel.swift */,
 				609441AC2AF58E4600329F4B /* WeatherInDaysResponseDataModel.swift */,
+				60E7CC852AF664C50056282B /* WeatherDaysModel.swift */,
+				60E7CC872AF664E40056282B /* WeatherDaysModelMapper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -181,6 +187,8 @@
 				60C80BD02AF564BA00498809 /* WeatherModel.swift in Sources */,
 				60C80BD22AF565D700498809 /* WeatherModelMapper.swift in Sources */,
 				609441B72AF59F5100329F4B /* WeatherForecastViewModel.swift in Sources */,
+				60E7CC882AF664E40056282B /* WeatherDaysModelMapper.swift in Sources */,
+				60E7CC862AF664C50056282B /* WeatherDaysModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

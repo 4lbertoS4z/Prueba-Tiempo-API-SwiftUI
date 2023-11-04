@@ -1,17 +1,18 @@
 import Foundation
 
 final class WeatherForecastViewModel: ObservableObject {
-    @Published var forecasts: [WeatherForecast] = []
+    @Published var forecasts: [WeatherDaysModel] = []
+    private let weatherDaysModelMapper: WeatherDaysModelMapper = WeatherDaysModelMapper()
 
     func getWeatherForecast(city: String) async {
         let apiKey = "b62d74a05541d78c1dd106c45f18a4db"
         let urlString = "https://api.openweathermap.org/data/2.5/forecast?q=\(city)&appid=\(apiKey)&units=metric&lang=es"
-        
+
         guard let url = URL(string: urlString) else {
             print("URL no válida")
             return
         }
-        
+
         do {
             let (data, response) = try await URLSession.shared.data(from: url)
             
@@ -19,10 +20,11 @@ final class WeatherForecastViewModel: ObservableObject {
                 print("Respuesta no válida de la API")
                 return
             }
-            
+
             let decodedResponse = try JSONDecoder().decode(WeatherInDaysResponseDataModel.self, from: data)
             DispatchQueue.main.async {
-                self.forecasts = decodedResponse.list // Asumiendo que "list" es el array de pronósticos en tu modelo de respuesta
+                // Aquí se usa el mapper para convertir los datos del modelo de respuesta al modelo de vista.
+                self.forecasts = self.weatherDaysModelMapper.daysMapDataModelToModel(dataModel: decodedResponse)
             }
         } catch {
             DispatchQueue.main.async {

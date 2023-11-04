@@ -49,9 +49,7 @@ struct Weather: Codable {
     let id: Int
     let main, description, icon: String
     
-    var iconURL: URL? {
-            URL(string: "http://openweathermap.org/img/wn/\(icon)@2x.png")
-        }
+   
 }
 
 struct Clouds: Codable {

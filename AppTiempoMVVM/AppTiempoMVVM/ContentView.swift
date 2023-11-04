@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+
 struct ContentView: View {
     @StateObject var weatherViewModel = WeatherViewModel()
     @StateObject var viewModel = WeatherForecastViewModel()
@@ -14,6 +16,14 @@ struct ContentView: View {
     @State private var cityName: String = UserDefaults.standard.string(forKey: "cityName") ?? ""
     @State private var showingAlert = false
     @State private var showingForecast = false
+    
+    // DateFormatter que incluye fecha y hora
+    private let dateFormatter: DateFormatter = {
+      let formatter = DateFormatter()
+      formatter.dateFormat = "E, d MMM yyyy HH:mm"
+      return formatter
+    }()
+
     
     var body: some View {
         VStack{
@@ -100,41 +110,40 @@ struct ContentView: View {
                     if viewModel.forecasts.isEmpty {
                         Text("Cargando datos del tiempo...")
                     } else {
-                        ForEach(viewModel.forecasts) { day in
+                        ForEach(viewModel.forecasts, id: \.dtTxt) { forecast in
                             VStack {
-                                Text(day.dtTxt)
+                                Text(dateFormatter.string(from: forecast.dtTxt))
                                     .font(.headline)
                                     .lineLimit(2)
                                 VStack(alignment: .leading) {
-                                    Text("Temp: \(day.main.temp, specifier: "%.1f")°C")
-                                    HStack{
-                                        if let url = day.weather.first?.iconURL {
+                                    Text("Temp: \(forecast.temp)")
+                                    HStack {
+                                        if let url = forecast.icon {
                                             AsyncImage(url: url) { image in
                                                 image.resizable()
                                             } placeholder: {
                                                 ProgressView()
                                             }
-                                            .frame(width: 50, height: 50) // Ajusta el tamaño según sea necesario
+                                            .frame(width: 50, height: 50)
                                         }
-                                        Text(day.weather.first?.main ?? "")
+                                        Text(forecast.main)
                                     }
-                                  
-                                    Text("Humedad: \(day.main.humidity)%")
+                                    Text("Humedad: \(forecast.humidity)")
                                 }
                             }
-                            .frame(width: 204) // Puedes ajustar la anchura como prefieras
+                            .frame(width: 204)
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 12).fill(Color.white.opacity(0.3)))
-                            
                         }
                     }
                 }
                 .padding(.horizontal)
             }
-            .frame(height: 200) // Ajusta la altura como prefieras
-            
-            Spacer()
-        }
+
+                        .frame(height: 200)
+                        
+                        Spacer()
+                    }
         .background(LinearGradient(colors:[.blue, .cyan, .yellow],startPoint: .topLeading, endPoint: .bottomTrailing)
         )
         .onAppear {
